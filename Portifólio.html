@@ -244,7 +244,6 @@
     .section-title { font-size: 2.1rem; margin-bottom: 14px; }
     .section-text { color: var(--muted); max-width: 780px; margin-bottom: 36px; }
 
-    /* Estilos Novos da Seção Skills */
     .tech-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -285,7 +284,6 @@
       background: linear-gradient(135deg, var(--primary), transparent);
     }
 
-    /* Cards Gerais (Sobre, Projetos, Experiência) */
     .grid { display: grid; gap: 22px; }
     .about-grid, .projects-grid, .contact-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
@@ -365,7 +363,7 @@
   <main class="container">
     <section class="hero">
       <div class="hero-text">
-        <span class="tag">Portfólio para GitHub</span>
+        <span class="tag">Portfólio em constante evolução</span>
         <h1>Olá, eu sou <span>José Cauan</span></h1>
         <p>Estudante de ADS na UNICID, focado em criar soluções modernas com tecnologia e organização analítica.</p>
         <p>Atuação em <span class="typing" id="typing"></span></p>
@@ -376,8 +374,8 @@
         </div>
         <div class="hero-stats">
           <div class="stat-box"><strong>3º</strong><span>Semestre em ADS</span></div>
-          <div class="stat-box"><strong>3+</strong><span>Projetos em Destaque</span></div>
-          <div class="stat-box"><strong>2027</strong><span>Previsão para Conclusão</span></div>
+          <div class="stat-box"><strong>15+</strong><span>Lógicas de Programação</span></div>
+          <div class="stat-box"><strong>2027</strong><span>Previsão de Conclusão</span></div>
         </div>
       </div>
       <div class="hero-card">
@@ -390,11 +388,11 @@
       <div class="grid about-grid">
         <div class="card">
           <h3>Formação</h3>
-          <p>Análise e Desenvolvimento de Sistemas — UNICID. Foco em back-end e arquitetura de dados.</p>
+          <p>Atualmente cursando Análise e Desenvolvimento de Sistemas na UNICID. Foco em arquitetura de dados e lógica estruturada.</p>
         </div>
         <div class="card">
           <h3>Profissional</h3>
-          <p>Atualmente na Konecta, adquirindo experiência profissional em atendimento, resolução de problemas e relacionamento com os clientes.</p>
+          <p>Experiência com financiamentos e renegociação no Banco Honda, unindo visão de negócio com soluções tecnológicas.</p>
         </div>
       </div>
     </section>
@@ -404,32 +402,42 @@
       <div class="tech-cards-grid">
         <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"><h3>HTML5</h3></div>
         <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"><h3>CSS3</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"><h3>JavaScript</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"><h3>PHP</h3></div>
+        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><h3>Python</h3></div>
+        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"><h3>Linguagem C</h3></div>
         <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"><h3>MySQL</h3></div>
         <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"><h3>VS Code</h3></div>
-      </div>
-      <div class="grid about-grid">
-        <div class="card"><h3>Outras Ferramentas</h3><p>Power BI, Git, MySQL Workbench e Pacote Office Avançado.</p></div>
-        <div class="card"><h3>Interesses</h3><p>Desenvolvimento Full-Stack, Automação de Processos e Inteligência Artificial.</p></div>
       </div>
     </section>
 
     <section id="projetos" class="reveal">
-      <h2 class="section-title">Projetos</h2>
+      <h2 class="section-title">Projetos em Destaque</h2>
       <div class="grid projects-grid">
         <article class="card">
-          <h3>Vagas de Estágio</h3>
-          <p>Portal para conexão entre estudantes e oportunidades.</p>
-          <div class="project-tags"><span>PHP</span><span>MySQL</span></div>
-          <a class="project-link" href="https://github.com/jcauan374-ads/Vagas-de-Estagio.">Ver GitHub →</a>
+          <h3>SaúdeOpen</h3>
+          <p>Sistema de gestão digital para o SUS, com funcionalidades de prontuário médico e pedidos de medicação.</p>
+          <div class="project-tags"><span>HTML/CSS</span><span>Gestão</span></div>
+          <a class="project-link" href="https://github.com/jcauan374-ads/SaudeOpen" target="_blank">Ver Repositório →</a>
         </article>
+
         <article class="card">
-          <h3>Clinica Odontologica</h3>
-          <p>Plataforma odontológica com agendamento online e integração PHP + MySQL.</p>
-          
-          <div class="project-tags"><span>JavaScript</span><span>Layout</span></div>
-          <a class="project-link" href="https://github.com/jcauan374-ads/Clinica-Odontologica">Ver GitHub →</a>
+          <h3>Lógicas em C</h3>
+          <p>Repositório com diversos algoritmos cobrindo estruturas de repetição, matrizes e funções modulares.</p>
+          <div class="project-tags"><span>C</span><span>Algoritmos</span></div>
+          <a class="project-link" href="https://github.com/jcauan374-ads/Logicas-em-C" target="_blank">Ver Repositório →</a>
+        </article>
+
+        <article class="card">
+          <h3>Python Core</h3>
+          <p>Exercícios interativos em Jupyter Notebook cobrindo automação e lógica de decisão.</p>
+          <div class="project-tags"><span>Python</span><span>Notebook</span></div>
+          <a class="project-link" href="https://github.com/jcauan374-ads/Estudos-Python" target="_blank">Ver Repositório →</a>
+        </article>
+
+        <article class="card">
+          <h3>Portal de Estágios</h3>
+          <p>Plataforma para conexão entre estudantes e oportunidades de mercado.</p>
+          <div class="project-tags"><span>PHP</span><span>MySQL</span></div>
+          <a class="project-link" href="https://github.com/jcauan374-ads/Vagas-de-Estagio." target="_blank">Ver Repositório →</a>
         </article>
       </div>
     </section>
@@ -437,13 +445,9 @@
     <section id="contato" class="reveal">
       <h2 class="section-title">Contato</h2>
       <div class="grid contact-grid">
-        
-        <div class="card"><h3>LinkedIn</h3><a href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" style="color:var(--primary)">Acessar Perfil</a></div>
-        
-   <div class="card"><h3>E-Mail</h3><a href="mailto:jcauan374@gmail.com" style="color:var(--primary)">jcauan374@gmail.com</a></div>
-      
-             <div class="card"><h3>Telefone/Whatsapp</h3><a href="https://wa.me/qr/4S45BHG5X4QCE1" style="color:var(--primary)">Entrar em Contato</a></div>
-      
+        <div class="card"><h3>LinkedIn</h3><a href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank" style="color:var(--primary)">Acessar Perfil</a></div>
+        <div class="card"><h3>E-Mail</h3><a href="mailto:jcauan374@gmail.com" style="color:var(--primary)">jcauan374@gmail.com</a></div>
+        <div class="card"><h3>WhatsApp</h3><a href="https://wa.me/qr/4S45BHG5X4QCE1" target="_blank" style="color:var(--primary)">Entrar em Contato</a></div>
       </div>
     </section>
   </main>
@@ -454,7 +458,7 @@
 
   <script>
     // Efeito de Digitação
-    const words = ['Desenvolvimento Web', 'Banco de Dados', 'Interfaces Modernas', 'Projetos Acadêmicos'];
+    const words = ['Desenvolvimento Web', 'Banco de Dados', 'Lógica de Programação', 'Análise de Sistemas'];
     let wordIdx = 0, charIdx = 0;
     const typingSpan = document.getElementById('typing');
 
