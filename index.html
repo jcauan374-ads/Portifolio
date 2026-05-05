@@ -4,495 +4,374 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>José Cauan | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0f1f;
-      --bg-soft: #11182d;
-      --card: rgba(17, 24, 45, 0.8);
-      --text: #f5f7ff;
-      --muted: #a9b3d1;
+      --bg: #060b18;
+      --bg-soft: #0d1425;
+      --bg-card: rgba(13,20,37,0.85);
+      --text: #eef1ff;
+      --muted: #8a96bc;
       --primary: #beef00;
-      --secondary: #1400c6;
+      --primary-dim: rgba(190,239,0,0.12);
       --accent: #ff0028;
-      --border: rgba(255, 255, 255, 0.08);
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(190,239,0,0.35);
+      --shadow: 0 24px 60px rgba(0,0,0,0.45);
+      --fh: 'Syne', sans-serif;
+      --fb: 'DM Sans', sans-serif;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(190, 239, 0, 0.12), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(20, 0, 198, 0.2), transparent 30%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Partículas de Fundo */
-    .particles {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .particles span {
-      position: absolute;
-      display: block;
-      width: 8px;
-      height: 8px;
-      background: rgba(190, 239, 0, 0.25);
-      border-radius: 50%;
-      animation: float 15s linear infinite;
-      bottom: -50px;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      background: rgba(10, 15, 31, 0.7);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: 0.3s ease;
-    }
-
-    .nav-links a:hover::after { width: 100%; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
-      gap: 40px;
-      padding: 60px 0;
-    }
-
-    .hero-text { animation: slideUp 1s ease forwards; }
-
-    .tag {
-      display: inline-block;
-      background: rgba(190, 239, 0, 0.12);
-      color: var(--primary);
-      border: 1px solid rgba(190, 239, 0, 0.25);
-      padding: 8px 14px;
-      border-radius: 999px;
-      margin-bottom: 18px;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.8rem);
-      line-height: 1.05;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-      text-shadow: 0 0 20px rgba(190, 239, 0, 0.25);
-    }
-
-    .hero p {
-      font-size: 1.08rem;
-      color: var(--muted);
-      max-width: 700px;
-      margin-bottom: 20px;
-    }
-
-    .typing { color: var(--accent); font-weight: 700; }
-
-    .buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin: 26px 0 28px;
-    }
-
-    .btn {
-      padding: 14px 22px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), #d8ff4d);
-      color: #08110a;
-      box-shadow: 0 10px 30px rgba(190, 239, 0, 0.25);
-    }
-
-    .btn-primary:hover { transform: translateY(-4px) scale(1.02); }
-
-    .btn-secondary {
-      border-color: rgba(255, 255, 255, 0.14);
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      border-radius: 28px;
-      padding: 18px;
-      animation: floatCard 4s ease-in-out infinite;
-    }
-
-    .profile-photo {
-      width: 100%;
-      height: 560px;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 22px;
-      display: block;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(120px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .stat-box {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      backdrop-filter: blur(8px);
-    }
-
-    .stat-box strong { display: block; color: var(--primary); font-size: 1.25rem; }
-    .stat-box span { color: var(--muted); font-size: 0.92rem; }
-
-    section { padding: 90px 0; }
-    .section-title { font-size: 2.1rem; margin-bottom: 14px; }
-    .section-text { color: var(--muted); max-width: 780px; margin-bottom: 36px; }
-
-    .tech-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .tech-card {
-      position: relative;
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 25px 20px;
-      text-align: center;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .tech-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--primary);
-    }
-
-    .tech-card img { width: 45px; height: 45px; transition: 0.3s; }
-    .tech-card h3 { font-size: 1rem; color: var(--text); }
-
-    .tech-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.05;
-      z-index: -1;
-      background: linear-gradient(135deg, var(--primary), transparent);
-    }
-
-    .grid { display: grid; gap: 22px; }
-    .about-grid, .projects-grid, .contact-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 24px;
-      padding: 26px;
-      transition: 0.35s ease;
-      backdrop-filter: blur(14px);
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(190, 239, 0, 0.35);
-    }
-
-    .project-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-    .project-tags span {
-      background: rgba(20, 0, 198, 0.18);
-      color: #c6c1ff;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-    }
-
-    .project-link {
-      display: block;
-      margin-top: 15px;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    footer {
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-
-    /* Animações */
-    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes floatCard { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .profile-photo { height: 400px; }
-    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0}
+    .blobs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .blobs span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.18}
+    .blobs span:nth-child(1){width:600px;height:600px;background:#beef00;top:-200px;left:-150px}
+    .blobs span:nth-child(2){width:500px;height:500px;background:#1400c6;bottom:-100px;right:-100px}
+    .blobs span:nth-child(3){width:350px;height:350px;background:#ff0028;top:40%;left:50%;opacity:.09}
+    .particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .particles span{position:absolute;display:block;background:rgba(190,239,0,.3);border-radius:50%;animation:pfloat 18s linear infinite;bottom:-50px}
+    @keyframes pfloat{0%{transform:translateY(0) rotate(0deg);opacity:0}10%{opacity:.8}100%{transform:translateY(-110vh) rotate(720deg);opacity:0}}
+    .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 28px}
+    header{position:sticky;top:0;z-index:100;backdrop-filter:blur(18px) saturate(180%);background:rgba(6,11,24,.75);border-bottom:1px solid var(--border)}
+    .nav{max-width:1200px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:var(--fh);font-size:1.15rem;font-weight:800;color:var(--primary)}
+    .logo span{color:var(--text);opacity:.5;font-weight:400}
+    .nav-links{display:flex;gap:26px;flex-wrap:wrap}
+    .nav-links a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.88rem;transition:color .25s}
+    .nav-links a:hover{color:var(--primary)}
+    .hero{min-height:100vh;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:60px;padding:80px 0 60px}
+    .hero-text{animation:slideUp .9s cubic-bezier(.22,1,.36,1) forwards}
+    .tag{display:inline-flex;align-items:center;gap:8px;background:var(--primary-dim);color:var(--primary);border:1px solid rgba(190,239,0,.2);padding:7px 16px;border-radius:999px;margin-bottom:22px;font-weight:600;font-size:.85rem;letter-spacing:.04em}
+    .tag::before{content:'●';font-size:.6rem;animation:blink 1.5s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    h1{font-family:var(--fh);font-size:clamp(2.8rem,6vw,5rem);line-height:1.02;margin-bottom:18px;letter-spacing:-.02em}
+    h1 .name{color:var(--primary)}
+    h1 .line2{display:block;opacity:.85}
+    .hero-desc{font-size:1.05rem;color:var(--muted);max-width:540px;margin-bottom:14px;line-height:1.75}
+    .typing-wrap{font-size:1rem;color:var(--muted);margin-bottom:32px}
+    .typing{color:var(--accent);font-weight:600}
+    .buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+    .btn{padding:13px 22px;border-radius:12px;text-decoration:none;font-weight:600;font-size:.92rem;transition:all .28s;display:inline-flex;align-items:center;gap:9px;border:1px solid transparent}
+    .btn-p{background:var(--primary);color:#05100a;box-shadow:0 8px 28px rgba(190,239,0,.28)}
+    .btn-p:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 36px rgba(190,239,0,.38)}
+    .btn-o{border-color:var(--border);color:var(--muted);background:rgba(255,255,255,.03)}
+    .btn-o:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .stat{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:16px 14px}
+    .stat strong{display:block;font-family:var(--fh);color:var(--primary);font-size:1.3rem;font-weight:800}
+    .stat span{color:var(--muted);font-size:.82rem;line-height:1.4}
+    .hero-card{background:linear-gradient(160deg,rgba(190,239,0,.06),rgba(20,0,198,.08));border:1px solid var(--border);border-radius:32px;padding:16px;animation:floatCard 5s ease-in-out infinite;box-shadow:var(--shadow)}
+    .profile-photo{width:100%;height:580px;object-fit:cover;object-position:center top;border-radius:24px;display:block;border:1px solid rgba(255,255,255,.07)}
+    @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    section{padding:100px 0;position:relative;z-index:1}
+    .label{font-family:var(--fh);font-size:.78rem;font-weight:700;color:var(--primary);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+    .section-title{font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:16px;letter-spacing:-.02em;line-height:1.1}
+    .section-text{color:var(--muted);max-width:620px;margin-bottom:50px;font-size:1rem}
+    .divider{height:1px;background:var(--border)}
+    .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:28px;transition:.3s;backdrop-filter:blur(14px)}
+    .card:hover{transform:translateY(-8px);border-color:var(--border-hover);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+    .card-icon{width:46px;height:46px;border-radius:14px;background:var(--primary-dim);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:18px;border:1px solid rgba(190,239,0,.15)}
+    .card h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;margin-bottom:10px}
+    .card p{color:var(--muted);font-size:.93rem;line-height:1.65}
+    .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+    .chip{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.88rem;font-weight:500;padding:8px 18px;border-radius:999px;transition:.25s}
+    .chip:hover{border-color:var(--border-hover);color:var(--text)}
+    .tl{position:relative;padding-left:32px}
+    .tl::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--primary),transparent)}
+    .tl-item{position:relative;margin-bottom:42px}
+    .tl-item:last-child{margin-bottom:0}
+    .tl-dot{position:absolute;left:-27px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid var(--bg);box-shadow:0 0 12px rgba(190,239,0,.5)}
+    .tl-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+    .tl-co{font-family:var(--fh);font-size:1.1rem;font-weight:800}
+    .tl-role{color:var(--primary);font-size:.88rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+    .tl-period{background:var(--primary-dim);border:1px solid rgba(190,239,0,.18);color:var(--primary);font-size:.78rem;font-weight:600;padding:4px 12px;border-radius:999px;white-space:nowrap}
+    .tl-desc{color:var(--muted);font-size:.93rem;line-height:1.7}
+    .tl-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .tl-tag{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.78rem;padding:4px 12px;border-radius:999px}
+    .edu-card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:28px;transition:.3s}
+    .edu-card:hover{transform:translateY(-6px);border-color:var(--border-hover)}
+    .edu-badge{display:inline-block;padding:5px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;margin-bottom:16px}
+    .current{background:rgba(190,239,0,.12);color:var(--primary);border:1px solid rgba(190,239,0,.2)}
+    .done{background:rgba(255,255,255,.06);color:var(--muted);border:1px solid var(--border)}
+    .edu-card h3{font-family:var(--fh);font-size:1.05rem;font-weight:700;margin-bottom:6px}
+    .inst{color:var(--primary);font-size:.88rem;font-weight:600;margin-bottom:10px}
+    .edu-card p{color:var(--muted);font-size:.9rem;line-height:1.65}
+    .edu-period{color:var(--muted);font-size:.82rem;margin-top:14px;opacity:.7}
+    .skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+    .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:13px}
+    .tc{background:var(--bg-soft);border:1px solid var(--border);border-radius:18px;padding:18px 12px;text-align:center;transition:.28s;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;overflow:hidden;cursor:default}
+    .tc::after{content:'';position:absolute;inset:0;opacity:0;background:linear-gradient(135deg,rgba(190,239,0,.07),transparent);transition:opacity .3s}
+    .tc:hover{transform:translateY(-7px);border-color:var(--border-hover)}
+    .tc:hover::after{opacity:1}
+    .tc img{width:38px;height:38px}
+    .tc h3{font-size:.8rem;font-weight:600;color:var(--text)}
+    .sbars{display:flex;flex-direction:column;gap:20px}
+    .sb-head{display:flex;justify-content:space-between;margin-bottom:8px}
+    .sb-name{font-weight:600;font-size:.92rem}
+    .sb-pct{color:var(--primary);font-weight:700;font-size:.88rem}
+    .sb-track{height:5px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+    .sb-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),#d8ff4d);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.22,1,.36,1)}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+    .pc{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:28px;transition:.3s;display:flex;flex-direction:column;gap:12px;backdrop-filter:blur(14px)}
+    .pc:hover{transform:translateY(-10px);border-color:var(--border-hover);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+    .pnum{font-family:var(--fh);font-size:.73rem;color:var(--primary);font-weight:700;letter-spacing:.1em;opacity:.6}
+    .pc h3{font-family:var(--fh);font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+    .pc p{color:var(--muted);font-size:.92rem;line-height:1.65;flex:1}
+    .ptags{display:flex;flex-wrap:wrap;gap:8px}
+    .ptags span{background:rgba(20,0,198,.2);color:#c6c1ff;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:500}
+    .pfoot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+    .plink{color:var(--primary);text-decoration:none;font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+    .plink:hover{gap:10px}
+    .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+    .cc{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:26px 24px;transition:.3s;text-align:center}
+    .cc:hover{transform:translateY(-8px);border-color:var(--border-hover)}
+    .cc-icon{font-size:1.8rem;margin-bottom:12px}
+    .cc h3{font-family:var(--fh);font-size:1rem;font-weight:700;margin-bottom:8px}
+    .cc a{color:var(--primary);text-decoration:none;font-size:.9rem;font-weight:600}
+    .cc a:hover{text-decoration:underline}
+    footer{padding:40px 28px;text-align:center;color:var(--muted);border-top:1px solid var(--border);font-size:.88rem}
+    footer span{color:var(--primary)}
+    .reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+    .reveal.active{opacity:1;transform:translateY(0)}
+    @keyframes slideUp{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;padding:60px 0 40px}.hero .hero-card{order:-1}.profile-photo{height:380px}.skills-wrap{grid-template-columns:1fr}}
+    @media(max-width:600px){.stats{grid-template-columns:1fr 1fr}.nav-links{gap:16px}}
   </style>
 </head>
 <body>
+<div class="blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="particles" aria-hidden="true">
+  <span style="left:8%;animation-delay:0s;width:4px;height:4px"></span>
+  <span style="left:22%;animation-delay:3s;width:6px;height:6px"></span>
+  <span style="left:40%;animation-delay:6s;width:3px;height:3px"></span>
+  <span style="left:60%;animation-delay:1.5s;width:5px;height:5px"></span>
+  <span style="left:78%;animation-delay:4.5s;width:4px;height:4px"></span>
+  <span style="left:92%;animation-delay:2s;width:6px;height:6px"></span>
+</div>
 
-  <div class="particles" aria-hidden="true">
-    <span style="left: 10%;"></span>
-    <span style="left: 30%; animation-delay: 2s;"></span>
-    <span style="left: 50%; animation-delay: 4s;"></span>
-    <span style="left: 70%; animation-delay: 1s;"></span>
-    <span style="left: 90%; animation-delay: 3s;"></span>
-  </div>
+<header>
+  <nav class="nav">
+    <div class="logo">J.Cauan<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#formacao">Formação</a>
+      <a href="#skills">Skills</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+</header>
 
-  <header>
-    <nav class="nav">
-      <div class="logo">J.Cauan.dev</div>
-      <div class="nav-links">
-        <a href="#sobre">Sobre</a>
-        <a href="#skills">Skills</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="tag">Portfólio em constante evolução</span>
+      <h1>Olá, sou <span class="name">José Cauan</span><span class="line2">— Dev &amp; Analista</span></h1>
+      <p class="hero-desc">Estudante de Análise e Desenvolvimento de Sistemas na UNICID, apaixonado por construir soluções digitais que unem lógica de programação e visão de negócio.</p>
+      <p class="typing-wrap">Especialidade em <span class="typing" id="typing"></span></p>
+      <div class="buttons">
+        <a class="btn btn-p" href="#projetos">Ver projetos ↓</a>
+        <a class="btn btn-o" href="https://github.com/jcauan374-ads" target="_blank">GitHub</a>
+        <a class="btn btn-o" href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank">LinkedIn</a>
       </div>
-    </nav>
-  </header>
+      <div class="stats">
+        <div class="stat"><strong>3º</strong><span>Semestre ADS</span></div>
+        <div class="stat"><strong>8+</strong><span>Repositórios Ativos</span></div>
+        <div class="stat"><strong>2027</strong><span>Conclusão Prevista</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="https://github.com/jcauan374-ads/Portifolio/blob/main/My%20Photo.jpeg?raw=true" alt="José Cauan" class="profile-photo">
+    </div>
+  </section>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-text">
-        <span class="tag">Portfólio em constante evolução</span>
-        <h1>Olá, eu sou <span>José Cauan</span></h1>
-        <p>Estudante de ADS na UNICID, focado em criar soluções modernas com tecnologia e organização analítica.</p>
-        <p>Atuação em <span class="typing" id="typing"></span></p>
-        <div class="buttons">
-          <a class="btn btn-primary" href="#projetos">Ver projetos</a>
-          <a class="btn btn-secondary" href="https://github.com/jcauan374-ads" target="_blank">GitHub</a>
-          <a class="btn btn-secondary" href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank">LinkedIn</a>
+  <!-- SOBRE -->
+  <section id="sobre" class="reveal">
+    <div class="label">Quem sou</div>
+    <h2 class="section-title">Sobre mim</h2>
+    <p class="section-text">Combino experiência no mercado financeiro com habilidades de desenvolvimento para criar soluções tecnológicas com impacto real.</p>
+    <div class="grid2">
+      <div class="card"><div class="card-icon">🎓</div><h3>Formação Acadêmica</h3><p>Cursando ADS na UNICID, 3º semestre. Foco em arquitetura de dados, algoritmos e lógica estruturada. Previsão de conclusão em 2027.</p></div>
+      <div class="card"><div class="card-icon">💼</div><h3>Experiência Profissional</h3><p>Atuação em financiamentos e renegociação de crédito no Banco Honda, desenvolvendo visão analítica e orientação a resultados — habilidades aplicadas diretamente no desenvolvimento de sistemas.</p></div>
+      <div class="card"><div class="card-icon">🚀</div><h3>Objetivo Profissional</h3><p>Busco oportunidades de estágio ou trainee em desenvolvimento web ou banco de dados, contribuindo com soluções modernas e bem estruturadas em equipes de tecnologia.</p></div>
+      <div class="card"><div class="card-icon">📍</div><h3>Localização</h3><p>São Paulo, SP — Brasil. Disponível para trabalho presencial, híbrido ou remoto na Grande São Paulo e demais regiões via home office.</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">Proatividade</span><span class="chip">Resolução de Problemas</span><span class="chip">Organização Analítica</span><span class="chip">Comunicação Clara</span><span class="chip">Aprendizado Contínuo</span><span class="chip">Visão de Negócio</span><span class="chip">Trabalho em Equipe</span><span class="chip">Atenção a Detalhes</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIÊNCIA -->
+  <section id="experiencia" class="reveal">
+    <div class="label">Trajetória</div>
+    <h2 class="section-title">Experiência Profissional</h2>
+    <p class="section-text">Histórico de atuação profissional com foco em resultados, análise de dados e atendimento orientado ao cliente.</p>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-role">Atendimento e Crédito</div>
+        <div class="tl-head">
+          <div class="tl-co">Banco Honda</div>
+          <span class="tl-period">2023 – Atualmente</span>
         </div>
-        <div class="hero-stats">
-          <div class="stat-box"><strong>3º</strong><span>Semestre em ADS</span></div>
-          <div class="stat-box"><strong>07+</strong><span>Repositorios em Constante Evolução</span></div>
-          <div class="stat-box"><strong>2027</strong><span>Previsão de Conclusão</span></div>
+        <p class="tl-desc">Atuação na área de financiamentos e renegociação de contratos de crédito para clientes pessoa física. Responsável pela análise de propostas, negociação de condições e acompanhamento do ciclo de vida dos contratos. Desenvolvimento de visão orientada a dados, métricas de desempenho e processos bem documentados — competências aplicadas diretamente no desenvolvimento de sistemas de gestão.</p>
+        <div class="tl-tags">
+          <span class="tl-tag">Análise de Crédito</span><span class="tl-tag">Renegociação</span><span class="tl-tag">Orientação a Dados</span><span class="tl-tag">Atendimento ao Cliente</span><span class="tl-tag">Setor Financeiro</span><span class="tl-tag">Processos Estruturados</span>
         </div>
       </div>
-      <div class="hero-card">
-        <img src="https://github.com/jcauan374-ads/Portifolio/blob/main/My%20Photo.jpeg?raw=true" alt="Cauan" class="profile-photo">
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FORMAÇÃO -->
+  <section id="formacao" class="reveal">
+    <div class="label">Educação</div>
+    <h2 class="section-title">Formação Acadêmica</h2>
+    <p class="section-text">Base sólida em TI com currículo orientado a desenvolvimento de sistemas, banco de dados e engenharia de software.</p>
+    <div class="grid2">
+      <div class="edu-card">
+        <span class="edu-badge current">Em andamento</span>
+        <h3>Análise e Desenvolvimento de Sistemas</h3>
+        <div class="inst">UNICID — Universidade Cidade de São Paulo</div>
+        <p>Tecnólogo focado em desenvolvimento de software, banco de dados relacionais, algoritmos, estruturas de dados e engenharia de requisitos. Atualmente no 3º semestre.</p>
+        <div class="edu-period">📅 2024 – 2027 (previsão)</div>
       </div>
-    </section>
-
-    <section id="sobre" class="reveal">
-      <h2 class="section-title">Sobre mim</h2>
-      <div class="grid about-grid">
-        <div class="card">
-          <h3>Formação</h3>
-          <p>Atualmente cursando Análise e Desenvolvimento de Sistemas na UNICID. Foco em arquitetura de dados e lógica estruturada.</p>
-        </div>
-        <div class="card">
-          <h3>Profissional</h3>
-          <p>Experiência com financiamentos e renegociação no Banco Honda, unindo visão de negócio com soluções tecnológicas.</p>
-        </div>
+      <div class="edu-card">
+        <span class="edu-badge done">Concluído</span>
+        <h3>Ensino Médio Completo</h3>
+        <div class="inst">Ensino Médio — São Paulo, SP</div>
+        <p>Formação base com desenvolvimento de raciocínio lógico, matemática e habilidades comunicativas que suportam a carreira em tecnologia.</p>
+        <div class="edu-period">📅 Concluído</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="skills" class="reveal">
-      <h2 class="section-title">Skills & Tecnologias</h2>
-      <div class="tech-cards-grid">
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"><h3>HTML5</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"><h3>CSS3</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><h3>Python</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"><h3>Linguagem C</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"><h3>MySQL</h3></div>
-        <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"><h3>VS Code</h3></div>
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="label">Tecnologias</div>
+    <h2 class="section-title">Skills &amp; Ferramentas</h2>
+    <p class="section-text">Stack em desenvolvimento contínuo, com prática aplicada em projetos reais e exercícios acadêmicos.</p>
+    <div class="skills-wrap">
+      <div class="tech-grid">
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><h3>HTML5</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><h3>CSS3</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"><h3>JavaScript</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><h3>PHP</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><h3>Python</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><h3>Linguagem C</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"><h3>MySQL</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><h3>Git</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"><h3>GitHub</h3></div>
+        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"><h3>VS Code</h3></div>
       </div>
-    </section>
-
-    <section id="projetos" class="reveal">
-      <h2 class="section-title">Projetos em Destaque</h2>
-      <div class="grid projects-grid">
-        <article class="card">
-          <h3>SaúdeOpen</h3>
-          <p>Sistema de gestão digital para o SUS, com funcionalidades de prontuário médico e pedidos de medicação.</p>
-          <div class="project-tags"><span>HTML/CSS</span><span>Gestão</span></div>
-          <a class="project-link" href="https://github.com/jcauan374-ads/SaudeOpen" target="_blank">Ver Repositório →</a>
-        </article>
-
-        <article class="card">
-          <h3>Lógicas em C</h3>
-          <p>Repositório com diversos algoritmos cobrindo estruturas de repetição, matrizes e funções modulares.</p>
-          <div class="project-tags"><span>C</span><span>Algoritmos</span></div>
-          <a class="project-link" href="https://github.com/jcauan374-ads/Logicas-em-C" target="_blank">Ver Repositório →</a>
-        </article>
-
-        <article class="card">
-          <h3>Python Core</h3>
-          <p>Exercícios interativos em Jupyter Notebook cobrindo automação e lógica de decisão.</p>
-          <div class="project-tags"><span>Python</span><span>Notebook</span></div>
-          <a class="project-link" href="https://github.com/jcauan374-ads/Estudos-Python" target="_blank">Ver Repositório →</a>
-        </article>
-
-        <article class="card">
-          <h3>Portal de Estágios</h3>
-          <p>Plataforma para conexão entre estudantes e oportunidades de mercado.</p>
-          <div class="project-tags"><span>PHP</span><span>MySQL</span></div>
-          <a class="project-link" href="https://github.com/jcauan374-ads/Vagas-de-Estagio." target="_blank">Ver Repositório →</a>
-        </article>
+      <div class="sbars">
+        <div class="label" style="margin-bottom:20px">Nível de Experiência</div>
+        <div><div class="sb-head"><span class="sb-name">HTML / CSS</span><span class="sb-pct">82%</span></div><div class="sb-track"><div class="sb-fill" data-w=".82"></div></div></div>
+        <div><div class="sb-head"><span class="sb-name">Linguagem C</span><span class="sb-pct">65%</span></div><div class="sb-track"><div class="sb-fill" data-w=".65"></div></div></div>
+        <div><div class="sb-head"><span class="sb-name">PHP + MySQL</span><span class="sb-pct">60%</span></div><div class="sb-track"><div class="sb-fill" data-w=".60"></div></div></div>
+        <div><div class="sb-head"><span class="sb-name">Python</span><span class="sb-pct">58%</span></div><div class="sb-track"><div class="sb-fill" data-w=".58"></div></div></div>
+        <div><div class="sb-head"><span class="sb-name">JavaScript</span><span class="sb-pct">55%</span></div><div class="sb-track"><div class="sb-fill" data-w=".55"></div></div></div>
+        <div><div class="sb-head"><span class="sb-name">Git / GitHub</span><span class="sb-pct">70%</span></div><div class="sb-track"><div class="sb-fill" data-w=".70"></div></div></div>
+        <p style="color:var(--muted);font-size:.8rem;margin-top:10px;opacity:.7">* Baseado em projetos práticos e aprendizado acadêmico contínuo.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contato" class="reveal">
-      <h2 class="section-title">Contato</h2>
-      <div class="grid contact-grid">
-        <div class="card"><h3>LinkedIn</h3><a href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank" style="color:var(--primary)">Acessar Perfil</a></div>
-        <div class="card"><h3>E-Mail</h3><a href="mailto:jcauan374@gmail.com" style="color:var(--primary)">jcauan374@gmail.com</a></div>
-        <div class="card"><h3>WhatsApp</h3><a href="https://wa.me/qr/4S45BHG5X4QCE1" target="_blank" style="color:var(--primary)">Entrar em Contato</a></div>
-      </div>
-    </section>
-  </main>
+  <div class="divider"></div>
 
-  <footer>
-    <p>© 2026 José Cauan — Desenvolvido com foco e código.</p>
-  </footer>
+  <!-- PROJETOS -->
+  <section id="projetos" class="reveal">
+    <div class="label">Portfólio</div>
+    <h2 class="section-title">Projetos em Destaque</h2>
+    <p class="section-text">Soluções desenvolvidas com foco em problemas reais, combinando design, back-end e banco de dados.</p>
+    <div class="pgrid">
+      <article class="pc">
+        <div class="pnum">01 — Destaque</div>
+        <h3>SaúdeOpen</h3>
+        <p>Sistema de gestão digital para o SUS com prontuário médico eletrônico, agendamento de consultas e pedidos de medicação. Projeto com foco em utilidade pública e acessibilidade.</p>
+        <div class="ptags"><span>HTML</span><span>CSS</span><span>Gestão Pública</span></div>
+        <div class="pfoot"><a class="plink" href="https://github.com/jcauan374-ads/SaudeOpen" target="_blank">Ver Repositório →</a></div>
+      </article>
+      <article class="pc">
+        <div class="pnum">02 — Destaque</div>
+        <h3>Portal de Estágios</h3>
+        <p>Plataforma web completa conectando estudantes a vagas de estágio. CRUD com cadastro de usuários e empresas, publicação de vagas, filtros avançados e candidaturas online.</p>
+        <div class="ptags"><span>PHP</span><span>MySQL</span><span>CRUD</span></div>
+        <div class="pfoot"><a class="plink" href="https://github.com/jcauan374-ads/Vagas-de-Estagio." target="_blank">Ver Repositório →</a></div>
+      </article>
+      <article class="pc">
+        <div class="pnum">03</div>
+        <h3>Clínica Odontológica</h3>
+        <p>Plataforma web para gestão odontológica com agendamento de consultas, apresentação de serviços e formulário PHP integrado ao banco de dados. Design responsivo completo.</p>
+        <div class="ptags"><span>HTML</span><span>PHP</span><span>MySQL</span></div>
+        <div class="pfoot"><a class="plink" href="https://github.com/jcauan374-ads/Clinica-Odontologica" target="_blank">Ver Repositório →</a></div>
+      </article>
+      <article class="pc">
+        <div class="pnum">04</div>
+        <h3>Python Core</h3>
+        <p>Coleção de exercícios em Jupyter Notebook: automação, lógica de decisão, estruturas de dados e manipulação de arquivos. Material progressivo de estudo com documentação.</p>
+        <div class="ptags"><span>Python</span><span>Jupyter</span><span>Algoritmos</span></div>
+        <div class="pfoot"><a class="plink" href="https://github.com/jcauan374-ads/Estudos-Python" target="_blank">Ver Repositório →</a></div>
+      </article>
+      <article class="pc">
+        <div class="pnum">05</div>
+        <h3>Lógicas em C</h3>
+        <p>Repositório de estudo com algoritmos progressivos: estruturas de repetição, funções modulares, ponteiros, matrizes e strings. Documentação detalhada para cada exercício.</p>
+        <div class="ptags"><span>C</span><span>Algoritmos</span><span>Documentação</span></div>
+        <div class="pfoot"><a class="plink" href="https://github.com/jcauan374-ads/Logicas-em-C" target="_blank">Ver Repositório →</a></div>
+      </article>
+      <article class="pc">
+        <div class="pnum">06</div>
+        <h3>Lógicas em HTML</h3>
+        <p>Documentação prática e progressiva dos fundamentos do HTML. Material estruturado de referência para quem está iniciando no desenvolvimento web front-end.</p>
+        <div class="ptags"><span>HTML</span><span>Documentação</span><span>Ensino</span></div>
+        <div class="pfoot"><a class="plink" href="https://github.com/jcauan374-ads/Logicas-Em-Html" target="_blank">Ver Repositório →</a></div>
+      </article>
+    </div>
+  </section>
 
-  <script>
-    // Efeito de Digitação
-    const words = ['Desenvolvimento Web', 'Banco de Dados', 'Lógica de Programação', 'Análise de Sistemas'];
-    let wordIdx = 0, charIdx = 0;
-    const typingSpan = document.getElementById('typing');
+  <div class="divider"></div>
 
-    function type() {
-      if (charIdx < words[wordIdx].length) {
-        typingSpan.textContent += words[wordIdx].charAt(charIdx++);
-        setTimeout(type, 100);
-      } else { setTimeout(erase, 2000); }
-    }
-    function erase() {
-      if (charIdx > 0) {
-        typingSpan.textContent = words[wordIdx].substring(0, --charIdx);
-        setTimeout(erase, 50);
-      } else {
-        wordIdx = (wordIdx + 1) % words.length;
-        setTimeout(type, 500);
-      }
-    }
+  <!-- CONTATO -->
+  <section id="contato" class="reveal">
+    <div class="label">Vamos conversar</div>
+    <h2 class="section-title">Contato</h2>
+    <p class="section-text">Aberto a oportunidades de estágio, freelas e colaborações. Fique à vontade para entrar em contato.</p>
+    <div class="cgrid">
+      <div class="cc"><div class="cc-icon">💼</div><h3>LinkedIn</h3><a href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank">Acessar Perfil</a></div>
+      <div class="cc"><div class="cc-icon">💻</div><h3>GitHub</h3><a href="https://github.com/jcauan374-ads" target="_blank">@jcauan374-ads</a></div>
+      <div class="cc"><div class="cc-icon">✉️</div><h3>E-mail</h3><a href="mailto:jcauan374@gmail.com">jcauan374@gmail.com</a></div>
+      <div class="cc"><div class="cc-icon">📲</div><h3>WhatsApp</h3><a href="https://wa.me/qr/4S45BHG5X4QCE1" target="_blank">Enviar Mensagem</a></div>
+    </div>
+  </section>
 
-    // Reveal ao Scroll
-    function reveal() {
-      const reveals = document.querySelectorAll(".reveal");
-      reveals.forEach(el => {
-        let windowHeight = window.innerHeight;
-        let elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 100) el.classList.add("active");
-      });
-    }
+</main>
 
-    window.addEventListener("scroll", reveal);
-    document.addEventListener("DOMContentLoaded", () => {
-      type();
-      reveal();
-    });
-  </script>
+<footer><p>© 2026 <span>José Cauan</span> — Desenvolvido com foco, código e café. ☕</p></footer>
+
+<script>
+  const words=['Desenvolvimento Web','Banco de Dados','Lógica de Programação','Análise de Sistemas','Back-end com PHP'];
+  let wi=0,ci=0;
+  const el=document.getElementById('typing');
+  function type(){if(ci<words[wi].length){el.textContent+=words[wi][ci++];setTimeout(type,90)}else setTimeout(erase,2200)}
+  function erase(){if(ci>0){el.textContent=words[wi].substring(0,--ci);setTimeout(erase,45)}else{wi=(wi+1)%words.length;setTimeout(type,450)}}
+  function reveal(){document.querySelectorAll('.reveal').forEach(e=>{if(e.getBoundingClientRect().top<window.innerHeight-90)e.classList.add('active')})}
+  new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.sb-fill').forEach(b=>{b.style.transform=`scaleX(${b.dataset.w||1})`})})},{threshold:.3}).observe(document.querySelector('.sbars')||document.body);
+  window.addEventListener('scroll',reveal);
+  document.addEventListener('DOMContentLoaded',()=>{type();reveal()});
+</script>
 </body>
 </html>
