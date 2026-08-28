@@ -134,6 +134,26 @@
     .cc h3{font-family:var(--fh);font-size:1rem;font-weight:700;margin-bottom:8px}
     .cc a{color:var(--primary);text-decoration:none;font-size:.9rem;font-weight:600}
     .cc a:hover{text-decoration:underline}
+    .contact-form{background:linear-gradient(145deg,rgba(11,20,29,.92),rgba(13,20,37,.78));border:1px solid rgba(69,220,232,.22);border-radius:24px;padding:28px;margin-bottom:26px;box-shadow:0 18px 48px rgba(0,0,0,.25)}
+    .form-heading{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .form-heading-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:rgba(69,220,232,.1);border:1px solid rgba(69,220,232,.2);color:#68edf2;font-size:1.25rem}
+    .form-heading h3{font-family:var(--fh);font-size:1.12rem;font-weight:800}
+    .form-heading p{color:var(--muted);font-size:.82rem;margin-top:3px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-field{display:flex;flex-direction:column;gap:7px}
+    .form-field.full{grid-column:1/-1}
+    .form-field label{color:#b6bdd7;font-size:.78rem;font-weight:600;letter-spacing:.04em}
+    .form-field input,.form-field textarea{width:100%;border:1px solid rgba(69,220,232,.2);border-radius:10px;background:rgba(8,25,31,.72);color:var(--text);font:500 .9rem var(--fb);outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+    .form-field input{height:46px;padding:0 14px}
+    .form-field textarea{min-height:116px;padding:13px 14px;resize:vertical;line-height:1.55}
+    .form-field input::placeholder,.form-field textarea::placeholder{color:#7c8799}
+    .form-field input:focus,.form-field textarea:focus{border-color:#4de6ee;background:rgba(8,31,37,.9);box-shadow:0 0 0 3px rgba(69,220,232,.1)}
+    .form-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+    .form-note{color:var(--muted);font-size:.78rem;line-height:1.45}
+    .form-submit{border:1px solid rgba(69,220,232,.55);border-radius:999px;background:linear-gradient(100deg,rgba(69,220,232,.18),rgba(190,239,0,.2),rgba(255,180,0,.18));color:#b8f7f4;padding:12px 22px;font:700 .88rem var(--fb);cursor:pointer;white-space:nowrap;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+    .form-submit:hover{transform:translateY(-2px);border-color:#68edf2;box-shadow:0 10px 28px rgba(69,220,232,.16)}
+    .form-submit:active{transform:scale(.97)}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.form-actions{align-items:stretch;flex-direction:column}.form-submit{width:100%}}
     footer{padding:40px 28px;text-align:center;color:var(--muted);border-top:1px solid var(--border);font-size:.88rem}
     footer span{color:var(--primary)}
     .reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
@@ -364,12 +384,40 @@
   <section id="contato" class="reveal">
     <div class="label">Vamos conversar</div>
     <h2 class="section-title">Contato</h2>
-    <p class="section-text">Aberto a oportunidades de estágio, freelas e colaborações. Fique à vontade para entrar em contato.</p>
+    <p class="section-text">Aberto a oportunidades de estágio, freelas e colaborações. Preencha o formulário e envie sua mensagem diretamente pelo WhatsApp.</p>
+    <form class="contact-form" id="whatsapp-form">
+      <div class="form-heading">
+        <div class="form-heading-icon">➤</div>
+        <div><h3>Envie uma mensagem</h3><p>Seu contato será aberto no WhatsApp com a mensagem preenchida.</p></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="contact-name">Nome</label>
+          <input id="contact-name" name="name" type="text" placeholder="Seu nome" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="contact-email">E-mail</label>
+          <input id="contact-email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+        </div>
+        <div class="form-field full">
+          <label for="contact-subject">Assunto</label>
+          <input id="contact-subject" name="subject" type="text" placeholder="Sobre o que quer conversar?" required>
+        </div>
+        <div class="form-field full">
+          <label for="contact-message">Mensagem</label>
+          <textarea id="contact-message" name="message" placeholder="Conte-me sobre seu projeto ou ideia..." required></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <span class="form-note">Ao enviar, o WhatsApp será aberto com seus dados organizados.</span>
+        <button class="form-submit" type="submit">➤&nbsp; Enviar via WhatsApp</button>
+      </div>
+    </form>
     <div class="cgrid">
       <div class="cc"><div class="cc-icon">💼</div><h3>LinkedIn</h3><a href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank">Acessar Perfil</a></div>
       <div class="cc"><div class="cc-icon">💻</div><h3>GitHub</h3><a href="https://github.com/jcauan374-ads" target="_blank">@jcauan374-ads</a></div>
       <div class="cc"><div class="cc-icon">✉️</div><h3>E-mail</h3><a href="mailto:jcauan374@gmail.com">jcauan374@gmail.com</a></div>
-      <div class="cc"><div class="cc-icon">📲</div><h3>WhatsApp</h3><a href="https://wa.me/qr/4S45BHG5X4QCE1" target="_blank">Enviar Mensagem</a></div>
+      <div class="cc"><div class="cc-icon">📲</div><h3>WhatsApp</h3><a href="https://wa.me/5511993817456" target="_blank">Enviar Mensagem</a></div>
     </div>
   </section>
 
@@ -378,6 +426,24 @@
 <footer><p>© 2026 <span>José Cauan</span> — Desenvolvido com foco, código e café. ☕</p></footer>
 
 <script>
+  const whatsappForm=document.getElementById('whatsapp-form');
+  whatsappForm.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    if(!whatsappForm.checkValidity()){whatsappForm.reportValidity();return;}
+    const formData=new FormData(whatsappForm);
+    const message=[
+      'Olá, José Cauan! Recebi seu contato pelo portfólio.',
+      '',
+      `Nome: ${formData.get('name')}`,
+      `E-mail: ${formData.get('email')}`,
+      `Assunto: ${formData.get('subject')}`,
+      '',
+      `Mensagem: ${formData.get('message')}`
+    ].join('\\n');
+    const whatsappUrl=`https://wa.me/5511993817456?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl,'_blank','noopener,noreferrer');
+  });
+
   const words=['Desenvolvimento Web','Banco de Dados','Lógica de Programação','Análise de Sistemas','Back-end com PHP'];
   let wi=0,ci=0;
   const el=document.getElementById('typing');
