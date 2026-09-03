@@ -150,10 +150,15 @@
     .form-field input:focus,.form-field textarea:focus{border-color:#4de6ee;background:rgba(8,31,37,.9);box-shadow:0 0 0 3px rgba(69,220,232,.1)}
     .form-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
     .form-note{color:var(--muted);font-size:.78rem;line-height:1.45}
+    .form-note[data-state="success"]{color:#beef00}
+    .form-note[data-state="error"]{color:#ff7184}
+    .form-buttons{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .form-submit{border:1px solid rgba(69,220,232,.55);border-radius:999px;background:linear-gradient(100deg,rgba(69,220,232,.18),rgba(190,239,0,.2),rgba(255,180,0,.18));color:#b8f7f4;padding:12px 22px;font:700 .88rem var(--fb);cursor:pointer;white-space:nowrap;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
     .form-submit:hover{transform:translateY(-2px);border-color:#68edf2;box-shadow:0 10px 28px rgba(69,220,232,.16)}
     .form-submit:active{transform:scale(.97)}
-    @media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.form-actions{align-items:stretch;flex-direction:column}.form-submit{width:100%}}
+    .form-submit:disabled{opacity:.6;cursor:wait;transform:none}
+    .form-submit-secondary{background:rgba(255,255,255,.04);border-color:rgba(190,239,0,.35);color:var(--primary)}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.form-actions{align-items:stretch;flex-direction:column}.form-buttons{flex-direction:column;align-items:stretch}.form-submit{width:100%}}
     footer{padding:40px 28px;text-align:center;color:var(--muted);border-top:1px solid var(--border);font-size:.88rem}
     footer span{color:var(--primary)}
     .reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
@@ -377,11 +382,11 @@
   <section id="contato" class="reveal">
     <div class="label">Vamos conversar</div>
     <h2 class="section-title">Contato</h2>
-    <p class="section-text">Aberto a oportunidades de estágio, freelas e colaborações. Preencha o formulário e envie sua mensagem diretamente pelo WhatsApp.</p>
-    <form class="contact-form" id="whatsapp-form">
+    <p class="section-text">Aberto a oportunidades de estágio, freelas e colaborações. Preencha o formulário para enviar uma mensagem por e-mail ou use o WhatsApp como alternativa.</p>
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyeypyev" method="POST">
       <div class="form-heading">
         <div class="form-heading-icon">➤</div>
-        <div><h3>Envie uma mensagem</h3><p>Seu contato será aberto no WhatsApp com a mensagem preenchida.</p></div>
+        <div><h3>Envie uma mensagem</h3><p>O formulário será encaminhado para o e-mail de José Cauan.</p></div>
       </div>
       <div class="form-grid">
         <div class="form-field">
@@ -402,8 +407,11 @@
         </div>
       </div>
       <div class="form-actions">
-        <span class="form-note">Ao enviar, o WhatsApp será aberto com seus dados organizados.</span>
-        <button class="form-submit" type="submit">➤&nbsp; Enviar via WhatsApp</button>
+        <span class="form-note" id="form-status" role="status" aria-live="polite">Sua mensagem será enviada com segurança pelo Formspree.</span>
+        <div class="form-buttons">
+          <button class="form-submit" type="submit" id="email-submit">✉&nbsp; Enviar por E-mail</button>
+          <button class="form-submit form-submit-secondary" type="button" id="whatsapp-button">➤&nbsp; Enviar via WhatsApp</button>
+        </div>
       </div>
     </form>
     <div class="cgrid">
@@ -419,22 +427,36 @@
 <footer><p>© 2026 <span>José Cauan</span> — Desenvolvido com foco, código e café. ☕</p></footer>
 
 <script>
-  const whatsappForm=document.getElementById('whatsapp-form');
-  whatsappForm.addEventListener('submit',(event)=>{
+  const contactForm=document.getElementById('contact-form');
+  const emailSubmit=document.getElementById('email-submit');
+  const whatsappButton=document.getElementById('whatsapp-button');
+  const formStatus=document.getElementById('form-status');
+  contactForm.addEventListener('submit',async(event)=>{
     event.preventDefault();
-    if(!whatsappForm.checkValidity()){whatsappForm.reportValidity();return;}
-    const formData=new FormData(whatsappForm);
-    const message=[
-      'Olá, José Cauan! Recebi seu contato pelo portfólio.',
-      '',
-      `Nome: ${formData.get('name')}`,
-      `E-mail: ${formData.get('email')}`,
-      `Assunto: ${formData.get('subject')}`,
-      '',
-      `Mensagem: ${formData.get('message')}`
-    ].join('\\n');
-    const whatsappUrl=`https://wa.me/5511993817456?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl,'_blank','noopener,noreferrer');
+    if(!contactForm.checkValidity()){contactForm.reportValidity();return;}
+    emailSubmit.disabled=true;
+    emailSubmit.textContent='Enviando...';
+    formStatus.textContent='Enviando sua mensagem...';
+    formStatus.dataset.state='loading';
+    try{
+      const response=await fetch(contactForm.action,{method:'POST',body:new FormData(contactForm),headers:{Accept:'application/json'}});
+      if(!response.ok) throw new Error('Falha no envio');
+      contactForm.reset();
+      formStatus.textContent='Mensagem enviada com sucesso. Obrigado pelo contato!';
+      formStatus.dataset.state='success';
+    }catch(error){
+      formStatus.textContent='Não foi possível enviar agora. Tente novamente ou use o WhatsApp.';
+      formStatus.dataset.state='error';
+    }finally{
+      emailSubmit.disabled=false;
+      emailSubmit.innerHTML='✉&nbsp; Enviar por E-mail';
+    }
+  });
+  whatsappButton.addEventListener('click',()=>{
+    if(!contactForm.checkValidity()){contactForm.reportValidity();return;}
+    const formData=new FormData(contactForm);
+    const message=['Olá, José Cauan! Recebi seu contato pelo portfólio.','',`Nome: ${formData.get('name')}`,`E-mail: ${formData.get('email')}`,`Assunto: ${formData.get('subject')}`,'',`Mensagem: ${formData.get('message')}`].join('\\n');
+    window.open(`https://wa.me/5511993817456?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
   });
 
   const words=['Desenvolvimento Web','Banco de Dados','Lógica de Programação','Análise de Sistemas','Back-end com PHP'];
