@@ -81,6 +81,20 @@
     .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
     .chip{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.88rem;font-weight:500;padding:8px 18px;border-radius:999px;transition:.25s}
     .chip:hover{border-color:var(--border-hover);color:var(--text)}
+    .skill-filters{display:flex;flex-wrap:wrap;gap:10px;margin:-20px 0 32px}
+    .skill-filter{border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.035);color:var(--muted);padding:9px 16px;font:600 .78rem var(--fb);cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease}
+    .skill-filter:hover,.skill-filter:focus-visible{border-color:var(--border-hover);color:var(--text);transform:translateY(-2px);outline:none}
+    .skill-filter.is-active{background:var(--primary);border-color:var(--primary);color:#07100b;box-shadow:0 8px 22px rgba(190,239,0,.18)}
+    .tc{min-height:185px;align-items:flex-start;text-align:left;justify-content:flex-start}
+    .tc small{color:var(--muted);font-size:.78rem;line-height:1.5;min-height:36px}
+    .skill-use{margin-top:auto;padding-top:12px;color:var(--primary);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .tc.is-hidden{display:none}
+    .skill-summary{background:linear-gradient(145deg,rgba(190,239,0,.09),rgba(20,0,198,.12));border:1px solid rgba(190,239,0,.18);border-radius:24px;padding:28px;min-height:100%;box-shadow:0 18px 50px rgba(0,0,0,.2)}
+    .skill-summary h3{font-family:var(--fh);font-size:1.35rem;line-height:1.15;margin-bottom:12px}
+    .skill-summary p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:24px}
+    .skill-focus{border-top:1px solid var(--border);padding:14px 0 0;margin-top:14px;display:flex;flex-direction:column;gap:4px}
+    .skill-focus span{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+    .skill-focus strong{font-size:.88rem;color:var(--text);line-height:1.45}
     .tl{position:relative;padding-left:32px}
     .tl::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--primary),transparent)}
     .tl-item{position:relative;margin-bottom:42px}
@@ -127,6 +141,7 @@
     .pfoot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
     .plink{color:var(--primary);text-decoration:none;font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
     .plink:hover{gap:10px}
+    .tech-grid .tc{align-items:flex-start;text-align:left}
     .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
     .cc{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:26px 24px;transition:.3s;text-align:center}
     .cc:hover{transform:translateY(-8px);border-color:var(--border-hover)}
@@ -158,7 +173,7 @@
     .form-submit:active{transform:scale(.97)}
     .form-submit:disabled{opacity:.6;cursor:wait;transform:none}
     .form-submit-secondary{background:rgba(255,255,255,.04);border-color:rgba(190,239,0,.35);color:var(--primary)}
-    @media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.form-actions{align-items:stretch;flex-direction:column}.form-buttons{flex-direction:column;align-items:stretch}.form-submit{width:100%}}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.form-actions{align-items:stretch;flex-direction:column}.form-buttons{flex-direction:column;align-items:stretch}.form-submit{width:100%}.skill-filters{margin-top:-24px}.skill-filter{flex:1 1 auto}.tc{min-height:165px}}
     footer{padding:40px 28px;text-align:center;color:var(--muted);border-top:1px solid var(--border);font-size:.88rem}
     footer span{color:var(--primary)}
     .reveal{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
@@ -288,31 +303,35 @@
   <section id="skills" class="reveal">
     <div class="label">Tecnologias</div>
     <h2 class="section-title">Skills &amp; Ferramentas</h2>
-    <p class="section-text">Stack em desenvolvimento contínuo, com prática aplicada em projetos reais e exercícios acadêmicos.</p>
+    <p class="section-text">Uma stack em evolução contínua, organizada por área e conectada ao tipo de problema que resolvo nos meus projetos acadêmicos.</p>
+    <div class="skill-filters" role="group" aria-label="Filtrar tecnologias por categoria">
+      <button class="skill-filter is-active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+      <button class="skill-filter" type="button" data-filter="frontend" aria-pressed="false">Front-end</button>
+      <button class="skill-filter" type="button" data-filter="backend" aria-pressed="false">Back-end &amp; Lógica</button>
+      <button class="skill-filter" type="button" data-filter="data" aria-pressed="false">Dados &amp; BI</button>
+      <button class="skill-filter" type="button" data-filter="tools" aria-pressed="false">Ferramentas</button>
+    </div>
     <div class="skills-wrap">
-      <div class="tech-grid">
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><h3>HTML5</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><h3>CSS3</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"><h3>JavaScript</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><h3>PHP</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><h3>Python</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><h3>Linguagem C</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"><h3>MySQL</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><h3>PostgreSQL</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><h3>Git</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"><h3>GitHub</h3></div>
-        <div class="tc"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"><h3>VS Code</h3></div>
+      <div class="tech-grid" id="skills-grid">
+        <article class="tc" data-category="frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><h3>HTML5</h3><small>Estrutura semântica e acessível</small><span class="skill-use">Clínica · Portfólio</span></article>
+        <article class="tc" data-category="frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><h3>CSS3</h3><small>Layouts responsivos e identidade visual</small><span class="skill-use">Interfaces web</span></article>
+        <article class="tc" data-category="frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><h3>JavaScript</h3><small>DOM, validações e interações</small><span class="skill-use">SisGESC · Formulários</span></article>
+        <article class="tc" data-category="backend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><h3>PHP</h3><small>Formulários, CRUD e lógica de servidor</small><span class="skill-use">Clínica · Estágios</span></article>
+        <article class="tc" data-category="backend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><h3>Python</h3><small>Automação, notebooks e análise inicial</small><span class="skill-use">Estudos acadêmicos</span></article>
+        <article class="tc" data-category="backend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="Linguagem C"><h3>Linguagem C</h3><small>Algoritmos, ponteiros e estruturas</small><span class="skill-use">Lógica de programação</span></article>
+        <article class="tc" data-category="data"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"><h3>MySQL</h3><small>Modelagem relacional e consultas</small><span class="skill-use">Clínica · Estágios</span></article>
+        <article class="tc" data-category="data"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><h3>PostgreSQL</h3><small>SQL avançado e normalização</small><span class="skill-use">PayFast · SisGESC</span></article>
+        <article class="tc" data-category="tools"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><h3>Git</h3><small>Versionamento e histórico de mudanças</small><span class="skill-use">Todos os projetos</span></article>
+        <article class="tc" data-category="tools"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"><h3>GitHub</h3><small>Documentação e publicação</small><span class="skill-use">Pages · Repositórios</span></article>
+        <article class="tc" data-category="tools"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"><h3>VS Code</h3><small>Desenvolvimento e organização de código</small><span class="skill-use">Ambiente principal</span></article>
       </div>
-      <div class="sbars">
-        <div class="label" style="margin-bottom:20px">Nível de Experiência</div>
-        <div><div class="sb-head"><span class="sb-name">HTML / CSS</span><span class="sb-pct">82%</span></div><div class="sb-track"><div class="sb-fill" data-w=".82"></div></div></div>
-        <div><div class="sb-head"><span class="sb-name">Linguagem C</span><span class="sb-pct">65%</span></div><div class="sb-track"><div class="sb-fill" data-w=".65"></div></div></div>
-        <div><div class="sb-head"><span class="sb-name">PHP + MySQL</span><span class="sb-pct">60%</span></div><div class="sb-track"><div class="sb-fill" data-w=".60"></div></div></div>
-        <div><div class="sb-head"><span class="sb-name">Python</span><span class="sb-pct">58%</span></div><div class="sb-track"><div class="sb-fill" data-w=".58"></div></div></div>
-        <div><div class="sb-head"><span class="sb-name">JavaScript</span><span class="sb-pct">55%</span></div><div class="sb-track"><div class="sb-fill" data-w=".55"></div></div></div>
-        <div><div class="sb-head"><span class="sb-name">Git / GitHub</span><span class="sb-pct">70%</span></div><div class="sb-track"><div class="sb-fill" data-w=".70"></div></div></div>
-        <p style="color:var(--muted);font-size:.8rem;margin-top:10px;opacity:.7">* Baseado em projetos práticos e aprendizado acadêmico contínuo.</p>
-      </div>
+      <aside class="skill-summary">
+        <div class="label" style="margin-bottom:14px">Como estou evoluindo</div>
+        <h3>Prática antes de promessa.</h3>
+        <p>Minha evolução é construída em projetos acadêmicos, documentação e experimentação. Em vez de apresentar percentuais absolutos, mostro onde cada tecnologia já foi aplicada.</p>
+        <div class="skill-focus"><span>Foco atual</span><strong>Dados + Desenvolvimento Web</strong></div>
+        <div class="skill-focus"><span>Próximo passo</span><strong>APIs REST e Java orientado a objetos</strong></div>
+      </aside>
     </div>
   </section>
 
@@ -458,6 +477,18 @@
     const message=['Olá, José Cauan! Recebi seu contato pelo portfólio.','',`Nome: ${formData.get('name')}`,`E-mail: ${formData.get('email')}`,`Assunto: ${formData.get('subject')}`,'',`Mensagem: ${formData.get('message')}`].join('\\n');
     window.open(`https://wa.me/5511993817456?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
   });
+
+  const skillFilters=document.querySelectorAll('.skill-filter');
+  const skillCards=document.querySelectorAll('#skills-grid .tc');
+  skillFilters.forEach((filter)=>filter.addEventListener('click',()=>{
+    const selected=filter.dataset.filter;
+    skillFilters.forEach((item)=>{
+      const active=item===filter;
+      item.classList.toggle('is-active',active);
+      item.setAttribute('aria-pressed',String(active));
+    });
+    skillCards.forEach((card)=>card.classList.toggle('is-hidden',selected!=='all'&&card.dataset.category!==selected));
+  }));
 
   const words=['Desenvolvimento Web','Banco de Dados','Lógica de Programação','Análise de Sistemas','Back-end com PHP'];
   let wi=0,ci=0;
