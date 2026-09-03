@@ -109,6 +109,13 @@
     .tl-desc strong{color:var(--text);font-weight:700}
     .tl-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
     .tl-tag{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:.78rem;padding:4px 12px;border-radius:999px}
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+    .cert-card{position:relative;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(20,0,198,.12));border:1px solid var(--border);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:12px;min-height:190px;text-decoration:none;color:var(--text);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .cert-card:hover,.cert-card:focus-visible{transform:translateY(-6px);border-color:var(--border-hover);box-shadow:0 18px 42px rgba(0,0,0,.28);outline:none}
+    .cert-icon{color:var(--primary);font-size:1.35rem}
+    .cert-card h3{font-family:var(--fh);font-size:1rem;line-height:1.25}
+    .cert-meta{color:var(--muted);font-size:.8rem;line-height:1.5}
+    .cert-link{margin-top:auto;color:var(--primary);font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
     .edu-card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:28px;transition:.3s}
     .edu-card:hover{transform:translateY(-6px);border-color:var(--border-hover)}
     .edu-badge{display:inline-block;padding:5px 14px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;margin-bottom:16px}
@@ -203,6 +210,7 @@
       <a href="#sobre">Sobre</a>
       <a href="#experiencia">Experiência</a>
       <a href="#formacao">Formação</a>
+      <a href="#certificacoes">Certificados</a>
       <a href="#skills">Skills</a>
       <a href="#projetos">Projetos</a>
       <a href="#contato">Contato</a>
@@ -223,6 +231,7 @@
         <a class="btn btn-p" href="#projetos">Ver projetos ↓</a>
         <a class="btn btn-o" href="https://github.com/jcauan374-ads" target="_blank">GitHub</a>
         <a class="btn btn-o" href="https://br.linkedin.com/in/jos%C3%A9-cauan-8247922b0" target="_blank">LinkedIn</a>
+        <a class="btn btn-o" href="docs/Curriculo_Jose-Cauan.pdf" download="Curriculo-Jose-Cauan.pdf">↓ Baixar currículo</a>
       </div>
       <div class="stats">
         <div class="stat"><strong>4º</strong><span>Semestre ADS</span></div>
@@ -297,6 +306,23 @@
         <p>Formação base com desenvolvimento de raciocínio lógico, matemática e habilidades comunicativas que suportam a carreira em tecnologia.</p>
         <div class="edu-period">📅 Concluído</div>
       </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CERTIFICAÇÕES -->
+  <section id="certificacoes" class="reveal">
+    <div class="label">Formação complementar</div>
+    <h2 class="section-title">Certificações</h2>
+    <p class="section-text">Cursos concluídos para reforçar minha base em desenvolvimento web, produtividade, dados, inteligência artificial e sistemas de TI.</p>
+    <div class="cert-grid">
+      <a class="cert-card" href="docs/certificados/Certificado-Projetos-de-Sistemas-de-TI.pdf" target="_blank" rel="noopener"><span class="cert-icon">◈</span><h3>Projetos de Sistemas de TI</h3><span class="cert-meta">Fundação Bradesco · 15 horas · Maio de 2025</span><span class="cert-link">Abrir certificado ↗</span></a>
+      <a class="cert-card" href="docs/certificados/Certificado-Excel.pdf" target="_blank" rel="noopener"><span class="cert-icon">▦</span><h3>Excel na Prática</h3><span class="cert-meta">Fundação Bradesco · 16 horas · Março de 2025</span><span class="cert-link">Abrir certificado ↗</span></a>
+      <a class="cert-card" href="docs/certificados/Certificado-HTML-CSS-JavaScript.pdf" target="_blank" rel="noopener"><span class="cert-icon">⌘</span><h3>Crie um Site com HTML, CSS e JavaScript</h3><span class="cert-meta">Escola Virtual · 2 horas · Março de 2025</span><span class="cert-link">Abrir certificado ↗</span></a>
+      <a class="cert-card" href="docs/certificados/Certificado-Power-BI.pdf" target="_blank" rel="noopener"><span class="cert-icon">◫</span><h3>Introdução à Análise de Dados — Power BI</h3><span class="cert-meta">Escola Virtual · 5 horas · Fevereiro de 2026</span><span class="cert-link">Abrir certificado ↗</span></a>
+      <a class="cert-card" href="docs/certificados/Certificado-Word-2016.pdf" target="_blank" rel="noopener"><span class="cert-icon">▤</span><h3>Microsoft Word 2016 — Básico</h3><span class="cert-meta">Escola Virtual · 9 horas · Março de 2025</span><span class="cert-link">Abrir certificado ↗</span></a>
+      <a class="cert-card" href="docs/certificados/Certificado-IA-Machine-Learning-Python.pdf" target="_blank" rel="noopener"><span class="cert-icon">✦</span><h3>IA, Machine Learning e Deep Learning com Python</h3><span class="cert-meta">Curso concluído · Certificado disponível em PDF</span><span class="cert-link">Abrir certificado ↗</span></a>
     </div>
   </section>
 
