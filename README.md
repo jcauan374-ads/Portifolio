@@ -21,7 +21,7 @@ Site de portfólio criado do zero para centralizar minhas informações profissi
 
 ## 🔗 Acesse
 
-[github.com/jcauan374-ads/Portifolio](https://github.com/jcauan374-ads/Portifolio)
+[github.com/jcauan374-ads/Portifolio]([https://github.com/jcauan374-ads/Portifolio)](https://jcauan374-ads.github.io/Portifolio/)
 
 ## 👨‍💻 Autor
 
